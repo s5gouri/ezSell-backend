@@ -5,7 +5,7 @@ const { rt1 } = require("./routes/log_routes");
 const { rt2 } = require("./routes/user_routes");
 const { rt3 } = require("./routes/rag_routes");
 const { USER } = require("./models/USER_MODEL");
-console.log(process.env.MONGO_URL);
+// console.log(process.env.MONGO_URL);
 connect(process.env.MONGO_URL);
 
 const PORT = process.env.PORT || 8000;
@@ -54,4 +54,3 @@ app.get("/hello", (req, res) => {
 app.listen(PORT, () => {
   console.log(`SERVER STARTED!! CPU--->${process.pid}`);
 });
-//how to export the check_for_user function
