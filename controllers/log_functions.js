@@ -115,7 +115,7 @@ const createcookie = async (req, res) => {
     res
       .cookie("authToken", user_token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .json(1);

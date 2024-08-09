@@ -41,6 +41,10 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  console.log("Cookies:", req.cookies);
+  next();
+});
 app.use("/log", rt1);
 app.use("/user", rt2);
 app.use("/rag", rt3);
