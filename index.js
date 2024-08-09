@@ -33,7 +33,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/log", rt1);
 app.use("/user", rt2);
 app.use("/rag", rt3);
-
+app.get("/hello",(req,res)=>{
+  res.send("hello")
+})
 app.listen(PORT, () => {
   console.log(`SERVER STARTED!! CPU--->${process.pid}`);
 });
