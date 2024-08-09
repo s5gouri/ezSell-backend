@@ -25,7 +25,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(status());
 const websites = ["http://192.168.5.161:3000", "http://localhost:3000"];
-app.use(cors({ origin: websites, credentials: true }));
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());
