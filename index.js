@@ -25,7 +25,13 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(status());
 const websites = ["http://192.168.5.161:3000", "http://localhost:3000"];
-app.use(cors({ origin: websites, credentials: true }));
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
@@ -33,9 +39,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/log", rt1);
 app.use("/user", rt2);
 app.use("/rag", rt3);
-app.get("/hello",(req,res)=>{
-  res.send("hello")
-})
+app.get("/hello", (req, res) => {
+  res.send("hello");
+});
 app.listen(PORT, () => {
   console.log(`SERVER STARTED!! CPU--->${process.pid}`);
 });
