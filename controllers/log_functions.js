@@ -80,24 +80,23 @@ const confirmation = async (req, res) => {
 
 const signin = async (req, res) => {
   const { EMAIL, PASSWORD } = req.body;
-  
-  
+
   try {
     const user_token = await USER.match_password_and_generate_token(
       EMAIL,
       PASSWORD
     );
-    
+    console.log("----->", user_token);
     if (user_token.length !== 0) {
       res
         .cookie("authToken", user_token, {
           httpOnly: true,
-          secure: false,
+          secure: process.env.NODE_ENV === "production",
           maxAge: 24 * 60 * 60 * 1000,
         })
         .json(1);
     } else {
-      console.log("galat h ")
+      console.log("galat h ");
       res.json(10);
     }
   } catch (error) {
