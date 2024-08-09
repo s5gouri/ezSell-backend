@@ -88,13 +88,14 @@ const signin = async (req, res) => {
     );
     console.log("----->", user_token);
     if (user_token.length !== 0) {
-      res.cookie("authToken", user_token, {
-        httpOnly: true,
-        secure: true,
-        path: "/",
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-      res.json(1);
+      res
+        .cookie("authToken", user_token, {
+          httpOnly: true,
+          secure: true,
+          path: "/",
+          maxAge: 24 * 60 * 60 * 1000,
+        })
+        .json(1);
     } else {
       console.log("galat h ");
       res.json(10);
