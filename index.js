@@ -5,9 +5,7 @@ const { rt1 } = require("./routes/log_routes");
 const { rt2 } = require("./routes/user_routes");
 const { rt3 } = require("./routes/rag_routes");
 const { USER } = require("./models/USER_MODEL");
-
 console.log(process.env.MONGO_URL);
-
 connect(process.env.MONGO_URL);
 
 const PORT = process.env.PORT || 8000;
@@ -27,7 +25,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(status());
 const websites = ["http://192.168.5.161:3000", "http://localhost:3000"];
-app.use(cors());
+app.use(cors({ origin: websites, credentials: true }));
 
 app.use(cookieParser());
 app.use(express.json());
