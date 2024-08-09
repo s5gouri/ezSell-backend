@@ -91,9 +91,7 @@ const signin = async (req, res) => {
       res
         .cookie("authToken", user_token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-         
-          
+          secure: true, 
           maxAge: 24 * 60 * 60 * 1000,
         })
         .json(1);
@@ -117,7 +115,7 @@ const createcookie = async (req, res) => {
     res
       .cookie("authToken", user_token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
        
       })

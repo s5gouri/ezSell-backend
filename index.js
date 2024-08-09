@@ -6,9 +6,7 @@ const { rt2 } = require("./routes/user_routes");
 const { rt3 } = require("./routes/rag_routes");
 const { USER } = require("./models/USER_MODEL");
 
-
 // console.log(process.env.MONGO_URL);
-
 
 connect(process.env.MONGO_URL);
 
@@ -53,6 +51,7 @@ app.use("/log", rt1);
 app.use("/user", rt2);
 app.use("/rag", rt3);
 app.get("/hello", (req, res) => {
+  console.log("cookies here-----",req.cookies);
   res.send("hello");
 });
 app.listen(PORT, () => {
