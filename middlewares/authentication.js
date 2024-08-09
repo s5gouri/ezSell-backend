@@ -1,10 +1,10 @@
 const { validate_token } = require("../services/service");
 const check_for_user = (cookie_name) => {
   return (req, res, next) => {
+    console.log(req.cookies);
     const cookie_value = req.cookies[cookie_name];
-
     if (!cookie_value) {
-      console.log("no cookie found")
+      console.log("no cookie found");
       return res.json(0);
     }
     try {
