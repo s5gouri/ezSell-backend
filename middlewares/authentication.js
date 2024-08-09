@@ -4,6 +4,7 @@ const check_for_user = (cookie_name) => {
     const cookie_value = req.cookies[cookie_name];
 
     if (!cookie_value) {
+      console.log("no cookie found")
       return res.json(0);
     }
     try {
