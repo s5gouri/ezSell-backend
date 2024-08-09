@@ -1,0 +1,40 @@
+require("dotenv").config();
+
+const { connect } = require("./connection");
+const { rt1 } = require("./routes/log_routes");
+const { rt2 } = require("./routes/user_routes");
+const { rt3 } = require("./routes/rag_routes");
+const { USER } = require("./models/USER_MODEL");
+
+connect(process.env.MONGO_URL);
+
+const PORT = process.env.PORT || 8000;
+
+const bodyParser = require("body-parser");
+const express = require("express");
+const status = require("express-status-monitor");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const path = require("path");
+
+const app = express();
+
+app.use(status());
+app.use(express.static(path.resolve("./public")));
+app.set("view engine", "ejs");
+app.set("views", path.resolve("./views"));
+app.use(status());
+const websites = ["http://192.168.5.161:3000", "http://localhost:3000"];
+app.use(cors({ origin: websites, credentials: true }));
+
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/log", rt1);
+app.use("/user", rt2);
+app.use("/rag", rt3);
+
+app.listen(PORT, () => {
+  console.log(`SERVER STARTED!! CPU--->${process.pid}`);
+});
+//how to export the check_for_user function
