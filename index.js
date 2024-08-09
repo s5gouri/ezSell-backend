@@ -24,11 +24,16 @@ app.use(express.static(path.resolve("./public")));
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(status());
-const websites = ["http://192.168.5.161:3000", "http://localhost:3000"];
+const websites = [
+  "http://192.168.5.161:3000",
+  "http://localhost:3000",
+  "https://your-frontend-domain.com",
+];
 app.use(
   cors({
-    origin: "*",
+    origin: websites,
     methods: "GET,POST,PUT,DELETE,OPTIONS",
+    credentials: true,
     allowedHeaders: "Content-Type,Authorization",
   })
 );
